@@ -1,0 +1,18 @@
+services:
+  postgres:
+    container_name: blog_postgres_dev
+    image: postgres:17.0
+    environment:
+      POSTGRES_USER: ${USERNAME}
+      POSTGRES_PASSWORD: ${PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    volumes:
+      - postgres:/data/postgres
+    ports:
+      - 5432:5432
+    restart: unless-stopped
+
+volumes:
+  postgres:
+
+
