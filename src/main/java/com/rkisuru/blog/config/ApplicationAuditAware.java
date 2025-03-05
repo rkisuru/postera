@@ -20,7 +20,7 @@ public class ApplicationAuditAware implements AuditorAware<String> {
         }
         Object principal = authentication.getPrincipal();
         if (principal instanceof OAuth2User) {
-            String username = ((OAuth2User) principal).getAttribute("sub");
+            String username = ((OAuth2User) principal).getAttribute("email");
             return Optional.ofNullable(username);
         }
         return Optional.ofNullable(authentication.getName());

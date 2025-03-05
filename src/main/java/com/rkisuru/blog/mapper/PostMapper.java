@@ -1,8 +1,8 @@
 package com.rkisuru.blog.mapper;
 
 import com.rkisuru.blog.entity.Post;
-import com.rkisuru.blog.request.PostRequest;
-import com.rkisuru.blog.response.PostResponse;
+import com.rkisuru.blog.dto.PostRequest;
+import com.rkisuru.blog.dto.PostResponse;
 import com.rkisuru.blog.service.ReadFileFromLocation;
 import org.springframework.stereotype.Service;
 

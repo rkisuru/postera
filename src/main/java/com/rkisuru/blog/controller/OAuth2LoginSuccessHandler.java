@@ -38,7 +38,6 @@ public class OAuth2LoginSuccessHandler extends SavedRequestAwareAuthenticationSu
         Map<String, Object> attributes = principal.getAttributes();
         String email = attributes.getOrDefault("email", "").toString();
         String name = attributes.getOrDefault("name", "").toString();
-        String sub = attributes.getOrDefault("sub", "").toString();
 
         userService.findByEmail(email)
                 .ifPresentOrElse(user -> {
@@ -49,8 +48,9 @@ public class OAuth2LoginSuccessHandler extends SavedRequestAwareAuthenticationSu
                     User user = new User();
                     user.setEmail(email);
                     user.setName(name);
-                    user.setSub(sub);
                     user.setRole(Role.ROLE_USER);
+                    user.setPassword("-");
+                    user.setEmailVerified(true);
                     user.setRegistrationSource(RegistrationSource.OAUTH2);
                     userService.saveUser(user);
 

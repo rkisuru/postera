@@ -1,7 +1,6 @@
 package com.rkisuru.blog.controller;
 
-import com.rkisuru.blog.request.CommentEditRequest;
-import com.rkisuru.blog.request.CommentRequest;
+import com.rkisuru.blog.dto.CommentRequest;
 import com.rkisuru.blog.service.CommentService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -29,7 +28,7 @@ public class CommentController {
     }
 
     @PutMapping("/{commentId}")
-    public ResponseEntity<?> editComment(@PathVariable Long commentId, @RequestBody CommentEditRequest request, @AuthenticationPrincipal OAuth2User user) {
+    public ResponseEntity<?> editComment(@PathVariable Long commentId, @RequestBody CommentRequest request, @AuthenticationPrincipal OAuth2User user) {
         return ResponseEntity.ok(commentService.editComment(commentId, request, user));
     }
 

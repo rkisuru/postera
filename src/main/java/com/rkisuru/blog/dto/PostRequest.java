@@ -1,10 +1,11 @@
-package com.rkisuru.blog.request;
+package com.rkisuru.blog.dto;
 
 import com.rkisuru.blog.type.PostType;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
 import java.util.List;
+import java.util.Set;
 
 public record PostRequest(
 
@@ -17,6 +18,6 @@ public record PostRequest(
         String content,
 
         PostType type,
-        List<String> tags
+        Set<String> tags
 ) {
 }

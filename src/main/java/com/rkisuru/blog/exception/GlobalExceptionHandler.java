@@ -23,4 +23,11 @@ public class GlobalExceptionHandler {
         ErrorResponse response = new ErrorResponse(e.getMessage(), HttpStatus.NOT_FOUND, LocalDateTime.now());
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(AlreadyExistsException.class)
+    public ResponseEntity<ErrorResponse> alreadyExistsException(AlreadyExistsException e) {
+
+        ErrorResponse response = new ErrorResponse(e.getMessage(), HttpStatus.BAD_REQUEST, LocalDateTime.now());
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    }
 }
