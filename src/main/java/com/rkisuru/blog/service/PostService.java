@@ -8,9 +8,8 @@ import com.rkisuru.blog.mapper.PostMapper;
 import com.rkisuru.blog.repository.CommentRepository;
 import com.rkisuru.blog.repository.PostLikeRepository;
 import com.rkisuru.blog.repository.PostRepository;
-import com.rkisuru.blog.request.EditRequest;
-import com.rkisuru.blog.request.PostRequest;
-import com.rkisuru.blog.response.PostResponse;
+import com.rkisuru.blog.dto.PostRequest;
+import com.rkisuru.blog.dto.PostResponse;
 import com.rkisuru.blog.type.PostType;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -32,12 +31,14 @@ public class PostService {
     private final PostLikeRepository postLikeRepository;
     private final FileUploadService fileUploadService;
     private final CommentRepository commentRepository;
+    private final UserService userService;
 
-    public Long savePost(PostRequest request){
+    public Long savePost(PostRequest request, @AuthenticationPrincipal OAuth2User user){
 
         Post post = mapper.toPost(request);
         post.setLikeCount(0);
         post.setViewCount(0);
+        post.setUser(userService.findByUsername(user.getAttribute("email")));
         return postRepository.save(post).getId();
     }
 
@@ -102,7 +103,7 @@ public class PostService {
             throw new OperationNotPermittedException("You are not allowed to delete this post");
     }
 
-    public Post editPost(Long postId, EditRequest request, @AuthenticationPrincipal OAuth2User user){
+    public Post editPost(Long postId, PostRequest request, @AuthenticationPrincipal OAuth2User user){
 
         Post Opost = postRepository.findById(postId)
                 .orElseThrow(()-> new EntityNotFoundException("Post not found"));

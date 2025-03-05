@@ -6,8 +6,7 @@ import com.rkisuru.blog.exception.OperationNotPermittedException;
 import com.rkisuru.blog.mapper.CommentMapper;
 import com.rkisuru.blog.repository.CommentRepository;
 import com.rkisuru.blog.repository.PostRepository;
-import com.rkisuru.blog.request.CommentEditRequest;
-import com.rkisuru.blog.request.CommentRequest;
+import com.rkisuru.blog.dto.CommentRequest;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -41,7 +40,7 @@ public class CommentService {
         throw new Exception("Comment cannot be empty!");
     }
 
-    public Comment editComment(Long commentId, CommentEditRequest request, @AuthenticationPrincipal OAuth2User user) {
+    public Comment editComment(Long commentId, CommentRequest request, @AuthenticationPrincipal OAuth2User user) {
 
         Comment comment = commentRepository.findById(commentId)
                 .orElseThrow(() -> new EntityNotFoundException("Comment not found"));

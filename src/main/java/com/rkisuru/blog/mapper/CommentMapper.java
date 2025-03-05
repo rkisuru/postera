@@ -1,7 +1,7 @@
 package com.rkisuru.blog.mapper;
 
 import com.rkisuru.blog.entity.Comment;
-import com.rkisuru.blog.request.CommentRequest;
+import com.rkisuru.blog.dto.CommentRequest;
 import org.springframework.stereotype.Service;
 
 @Service

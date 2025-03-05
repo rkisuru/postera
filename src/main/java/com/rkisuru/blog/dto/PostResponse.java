@@ -1,4 +1,4 @@
-package com.rkisuru.blog.response;
+package com.rkisuru.blog.dto;
 
 import com.rkisuru.blog.entity.Comment;
 import com.rkisuru.blog.type.PostType;
@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -25,6 +26,6 @@ public class PostResponse {
     private LocalDateTime createdDate;
     private int likeCount;
     private int viewCount;
-    private List<String> tags;
+    private Set<String> tags;
     private List<Comment> comments;
 }
